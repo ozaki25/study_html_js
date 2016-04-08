@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Runners入部届け</title>
+  </head>
+
+  <body>
+    <h1>Runners入部届け</h1>
+    <form action="#" method="post">
+
+      <div style="margin-bottom: 15px;">
+        <div>・名前</div>
+        <input type="text" name="name">
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <div>・野球歴</div>
+        <input type="radio" name="experience" id="none" value="none" checked>
+        <label for="none">初心者</label>
+        <input type="radio" name="experience" id="beginner" value="beginner">
+        <label for="beginner">1年〜3年</label>
+        <input type="radio" name="experience" id="intermediate" value="intermediate">
+        <label for="intermediate">4年〜6年</label>
+        <input type="radio" name="experience" id="advanced" value="advanced">
+        <label for="advanced">7年〜</label>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <div>・希望のポジション・経験のあるポジション(複数選択可)</div>
+        <div>
+          <input type="checkbox" name="posision" id="pitcher" value="pitcher">
+          <label for="pitcher">ピッチャー</label>
+          <input type="checkbox" name="posision" id="catcher" value="catcher">
+          <label for="catcher">キャッチャー</label>
+        </div>
+        <div>
+          <input type="checkbox" name="posision" id="first" value="first">
+          <label for="first">ファースト</label>
+          <input type="checkbox" name="posision" id="second" value="second">
+          <label for="second">セカンド</label>
+          <input type="checkbox" name="posision" id="third" value="third">
+          <label for="third">サード</label>
+          <input type="checkbox" name="posision" id="ss" value="ss">
+          <label for="ss">ショート</label>
+        </div>
+        <div>
+          <input type="checkbox" name="posision" id="left" value="left">
+          <label for="left">レフト</label>
+          <input type="checkbox" name="posision" id="center"value="center">
+          <label for="center">センター</label>
+          <input type="checkbox" name="posision" id="right" value="right">
+          <label for="right">ライト</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <div>・好きな球団</div>
+          <select name="team">
+            <option value="sb">ソフトバンク</option>
+            <option value="fs" selected>日本ハム</option>
+            <option value="m">ロッテ</option>
+            <option value="l">西武</option>
+            <option value="bu">オリックス</option>
+            <option value="e">楽天</option>
+            <option value="ys">ヤクルト</option>
+            <option value="g">巨人</option>
+            <option value="t">阪神</option>
+            <option value="c">広島</option>
+            <option value="d">中日</option>
+            <option value="de">横浜</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <div>・自己アピール</div>
+        <textarea name="comment" cols="40" rows="5"></textarea>
+      </div>
+
+
+      <p>
+        <input type="submit" value="Runnersに入部します！">
+        <input type="submit" value="Runnersに入部しません！" title="これは押させない" disabled>
+      </p>
+    </form>
+  </body>
+</html>
