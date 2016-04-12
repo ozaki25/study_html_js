@@ -16,21 +16,10 @@ body {
     float: right;
 }
 
-.navbar-footer {
-    margin-top: 8px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.navbar-footer-icon {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.navbar-footer-input {
-    width: auto;
-    min-width: 60%;
-    display: inline-block
+.footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
 }
 
 .my-statement {

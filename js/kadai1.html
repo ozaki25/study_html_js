@@ -13,11 +13,11 @@
       <div class="container">
         <p id="group_title" class="navbar-top-title">Fighters bot</p>
         <p class="navbar-top-menu">
-          <a href="#" class="btn btn-link">
-            <span id="home_link" class="glyphicon glyphicon-home white" aria-hidden="true"></span>
+          <a href="#" id="home_link" class="btn btn-link">
+            <span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
           </a>
-          <a href="#" class="btn btn-link">
-            <span id="toggle_menu" class="glyphicon glyphicon-menu-down white" aria-hidden="true"></span>
+          <a href="#" id="toggle_menu" class="btn btn-link">
+            <span class="glyphicon glyphicon-menu-down white" aria-hidden="true"></span>
           </a>
         </p>
       </div>
@@ -39,17 +39,21 @@
 
     </div>
 
-    <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
-        <div class="navbar-footer">
-          <a href="#" class="navbar-footer-icon">
-            <span id="post_menu_link" class="glyphicon glyphicon-plus gray" aria-hidden="true"></span>
-          </a>
-          <a href="#" class="navbar-footer-icon">
-            <span id="stamp_link" class="glyphicon glyphicon-piggy-bank gray" aria-hidden="true"></span>
-          </a>
-          <input id="input_statement" class="form-control navbar-footer-input" type="text" >
-          <button type="button" class="btn btn-primary">送信</button>
-        </div>
-    </nav>
+    <div id="footer" class="footer input-group" style="background-color: white;">
+      <span class="input-group-btn">
+        <button id="post_menu_btn" class="btn btn-link" type="button">
+          <span class="glyphicon glyphicon-plus gray" aria-hidden="true"></span>
+        </button>
+        <button id="stamp_btn" class="btn btn-link" type="button">
+          <span class="glyphicon glyphicon-piggy-bank gray" aria-hidden="true"></span>
+        </button>
+      </span>
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button id="post_btn" class="btn btn-link" type="button">
+          <span class="glyphicon glyphicon-pencil gray" aria-hidden="true"></span>
+        </button>
+      </span>
+    </div>
   </body>
 </html>
