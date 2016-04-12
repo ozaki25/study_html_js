@@ -5,31 +5,49 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" media="screen" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" media="screen" href="./kadai1.css">
   </head>
+
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <p style="margin: 15px; float: left; color: #9d9d9d;">Fighters bot</p>
-        <p style="margin-top: 10px; margin-bottom: 0; float: right;">
+        <p id="group_title" class="navbar-top-title">Fighters bot</p>
+        <p class="navbar-top-menu">
           <a href="#" class="btn btn-link">
-            <span class="glyphicon glyphicon-home" style="color: white;" aria-hidden="true"></span>
+            <span id="home_link" class="glyphicon glyphicon-home white" aria-hidden="true"></span>
           </a>
           <a href="#" class="btn btn-link">
-            <span class="glyphicon glyphicon-menu-down" style="color: white;" aria-hidden="true"></span>
+            <span id="toggle_menu" class="glyphicon glyphicon-menu-down white" aria-hidden="true"></span>
           </a>
         </p>
       </div>
     </nav>
-    <div></div>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div style="margin-top: 8px; margin-left: 10px; margin-right: 10px;">
-          <a href="#" style="margin-left: 5px; margin-right: 5px;">
-            <span class="glyphicon glyphicon-plus" style="color: gray;" aria-hidden="true"></span>
+
+    <div id="statement">
+      <div class="my-statement">今日の先発は誰ですか？</div>
+      <div class="my-statement">今日の先発は大谷なんですか？</div>
+      <div class="my-statement">今日の先発の大谷は打席に立つんですか？</div>
+      <div class="my-statement">今日の先発の大谷の打順を教えて下さい。DH解除するんですよね？</div>
+      <div class="other-user">
+        <img src="./icon.jpg" alt="icon" class="img-circle user-icon">
+        <span class="other-user-statement">今日の先発は大谷翔平です！</span>
+      </div>
+      <div class="other-user">
+        <img src="./icon.jpg" alt="icon" class="img-circle user-icon">
+        <span class="other-user-statement">大谷翔平です！</span>
+      </div>
+
+    </div>
+
+    <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-footer">
+          <a href="#" class="navbar-footer-icon">
+            <span id="post_menu_link" class="glyphicon glyphicon-plus gray" aria-hidden="true"></span>
           </a>
-          <a href="#" style="margin-left: 5px; margin-right: 5px;">
-            <span class="glyphicon glyphicon-piggy-bank" style="color: gray;" aria-hidden="true"></span>
+          <a href="#" class="navbar-footer-icon">
+            <span id="stamp_link" class="glyphicon glyphicon-piggy-bank gray" aria-hidden="true"></span>
           </a>
-          <input type="text" class="form-control" style="width: auto; min-width: 60%; display: inline-block;">
+          <input id="input_statement" class="form-control navbar-footer-input" type="text" >
           <button type="button" class="btn btn-primary">送信</button>
         </div>
     </nav>
