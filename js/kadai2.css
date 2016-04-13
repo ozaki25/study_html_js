@@ -1,7 +1,6 @@
 body {
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: #7897C5;
 }
 
 .navbar-top-title {
@@ -30,7 +29,7 @@ body {
     margin-bottom: 5px;
     margin-right: 10px;
     margin-left: 20%;
-    padding: 10px;
+    padding: 8px;
     position: relative;
     clear: both;
     max-width: 500px;
@@ -68,8 +67,9 @@ body {
     border: 1px solid #777777;
     border-radius: 15px;
     margin-left: 10px;
-    padding: 10px;
+    padding: 8px;
     position: relative;
+    display: inline-block;
     max-width: 500px;
 }
 
@@ -94,6 +94,12 @@ body {
 
 .user-icon {
     width: 35px;
+    float: left;
+}
+
+.user-icon-big {
+    width: 100px;
+    float: left;
 }
 
 .white {
@@ -102,4 +108,12 @@ body {
 
 .gray {
     color: gray;
+}
+
+.bg-blue {
+    background-color: #7897C5;
+}
+
+.bg-pink {
+    background-color: #FFC0CB;
 }

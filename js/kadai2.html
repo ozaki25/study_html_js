@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" media="screen" href="./bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" media="screen" href="./kadai1.css">
+    <link rel="stylesheet" media="screen" href="./kadai2.css">
+    <script src="./jquery.js"></script>
+    <script src="./kadai2.js"></script>
   </head>
 
-  <body>
+  <body class="bg-blue">
     <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <p id="group_title" class="navbar-top-title">Fighters bot</p>
@@ -24,10 +26,15 @@
     </nav>
 
     <div id="statement">
-      <div class="my-statement">今日の先発は誰ですか？</div>
+      <div class="my-statement">
+        今日の先発は誰ですか？
+        <button class="close" type="button">
+          <span>×</span>
+        </button>
+      </div>
       <div class="other-user">
         <img src="./icon.jpg" alt="icon" class="img-circle user-icon">
-        <span class="other-user-statement">大谷翔平です！</span>
+        <div class="other-user-statement">大谷翔平です！</div>
       </div>
 
     </div>
@@ -37,11 +44,11 @@
         <button id="post_menu_btn" class="btn btn-link" type="button">
           <span class="glyphicon glyphicon-plus gray" aria-hidden="true"></span>
         </button>
-        <button id="stamp_btn" class="btn btn-link" type="button">
+        <button id="change_bgcolor_btn" class="btn btn-link" type="button">
           <span class="glyphicon glyphicon-piggy-bank gray" aria-hidden="true"></span>
         </button>
       </span>
-      <input type="text" class="form-control">
+      <input type="text" id="input_field" class="form-control">
       <span class="input-group-btn">
         <button id="post_btn" class="btn btn-link" type="button">
           <span class="glyphicon glyphicon-pencil gray" aria-hidden="true"></span>
