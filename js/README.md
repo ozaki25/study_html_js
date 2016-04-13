@@ -6,8 +6,8 @@
 # 課題１
 ## 覚えてほしいこと
 * jQueryの基本的な操作
-** セレクタの使い方
-** appendやalert等のメソッド
+  * セレクタの使い方
+  * appendやalert等のメソッド
 
 ## 内容
 * 一問一答形式です
@@ -15,7 +15,7 @@
 
 ## 手順
 1. gitプロジェクトをダウンロードして下さい(ダウンロード済みの人は次へ)
-** https://github.com/ozaki25/study_html_js/archive/master.zip
+  * https://github.com/ozaki25/study_html_js/archive/master.zip
 2. js/kadai1.htmlをブラウザで開いて下さい
 3. 開発者ツールを開きコンソールに動作確認の文言が表示されていれば準備OKです
 4. js/kadai1.jsを編集して課題を進めて下さい
