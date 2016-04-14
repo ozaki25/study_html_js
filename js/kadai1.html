@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>jQueryの練習</title>
+    <meta charset="utf-8">
+    <script src="./jquery.js"></script>
+    <script src="./kadai1.js"></script>
+  </head>
+  <body>
+    <div>
+      <h3>セレクタの使い方に慣れよう！</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>対戦相手</th>
+            <th>場所</th>
+            <th>先発投手</th>
+            <th>勝敗</th>
+            <th>
+              <a href="http://www.fighters.co.jp/">公式HP</a>
+            </th>
+            <th>概要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="win">
+            <td>4/8</td>
+            <td>西武</td>
+            <td>東京ドーム</td>
+            <td>吉川</td>
+            <td>勝ち</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015040801/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>中島が3安打の活躍！</li>
+              </ul>
+            </td>
+          </tr>
+          <tr id="my_best_game" class="win">
+            <td>5/26</td>
+            <td>ヤクルト</td>
+            <td stadium="jingu">神宮球場</td>
+            <td>メンドーサ</td>
+            <td>勝ち</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015052601/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>この試合も中島が3安打！</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>5/28</td>
+            <td>ヤクルト</td>
+            <td stadium="jingu">神宮球場</td>
+            <td>上沢</td>
+            <td>負け</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015052801/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>途中まで0-7で疲れた<li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="in-hokkaido">
+            <td>6/11</td>
+            <td>巨人</td>
+            <td>札幌ドーム</td>
+            <td>上沢</td>
+            <td>負け</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015061101/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>終盤に宮西が試合をぶっ壊しました</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="win in-hokkaido">
+            <td>6/12</td>
+            <td>横浜</td>
+            <td>札幌ドーム</td>
+            <td>武田勝</td>
+            <td>勝ち</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015061201/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>移籍直後の矢野が即スタメン2安打！</li>
+                <li>
+                  <a href="http://www.fighters.co.jp/upfile_f/Image/game/2415/after/1_2.jpg">矢野</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="win in-hokkaido">
+            <td>6/13</td>
+            <td>横浜</td>
+            <td>札幌ドーム</td>
+            <td>吉川</td>
+            <td>勝ち</td>
+            <td>
+              <a href="http://www.fighters.co.jp/gamelive/result/2015061301/">
+                詳細
+              </a>
+            </td>
+            <td>
+              <ul>
+                <li>初回に中田ホームラン！</li>
+                <li>
+                  <a href="http://www.fighters.co.jp/upfile_f/Image/game/2416/after/1_2.jpg">中田と吉川</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="q1" type="button">問1</button>
+      <button id="q2" type="button">問2</button>
+      <button id="q3" type="button">問3</button>
+      <button id="q4" type="button">問4</button>
+      <button id="q5" type="button">問5</button>
+      <button id="q6" type="button">問6</button>
+      <button id="q7" type="button">問7</button>
+      <a href="./kadai1.html">リセット</a>
+    </div>
+  </body>
+</html>
