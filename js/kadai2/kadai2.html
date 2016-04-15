@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>jQueryの練習</title>
+    <meta charset="utf-8">
+    <script src="../jquery.js"></script>
+    <script src="./kadai2.js"></script>
+    <style type="text/css">.red { color: red; }</style>
+  </head>
+  <body>
+    <div>
+      <h2>問1.属性の操作！</h2>
+      <h3 id="q1">attr()とremeveAttr()を使う</h3>
+      <ol>
+        <li>idがq1の要素にname属性を追加して下さい。</li>
+        <li>1で設定したname属性を取得してalertで表示して下さい。</li>
+        <li>name属性を削除して下さい。</li>
+      </ol>
+      <button id="q1-1" type="button">問1-1(nameを設定)</button>
+      <button id="q1-2" type="button">問1-2(nameをalertで確認)</button>
+      <button id="q1-3" type="button">問1-3(nameを削除)</button>
+    </div>
+    <hr>
+    <div>
+      <h2>問2.classの操作！</h2>
+      <h3 id="q2">addClass()とremeveClass()とtoggleClass()を使う</h3>
+      <ol>
+        <li>idがq2の要素のclassにredを追加して下さい。</li>
+        <li>1で設定したclassを削除して下さい。</li>
+        <li>クリックする度にclassにredが追加削除が繰り返されるようにして下さい。</li>
+      </ol>
+      <button id="q2-1" type="button">問2-1(classを追加する)</button>
+      <button id="q2-2" type="button">問2-2(classを削除する)</button>
+      <button id="q2-3" type="button">問2-3(classの有無を切り替える)</button>
+    </div>
+    <hr>
+    <div>
+      <h2>問3.要素の追加！</h2>
+      <h3>append(),prepend(),after(),before()を使う</h3>
+      <ul id="fighters">
+        <li id="pitcher">
+          投手
+          <ul>
+            <li>大谷</li>
+          </ul>
+        </li>
+        <li id="outfield">
+          外野手
+          <ul>
+            <li>西川</li>
+            <li>陽</li>
+            <li>杉谷</li>
+          </ul>
+        </li>
+      </ul>
+      <ol>
+        <li>リスト(idがfighters)の末尾にベンチの項目を追加して下さい。</li>
+        <li>リスト(idがfighters)の先頭に監督の項目を追加して下さい。</li>
+        <li>投手(idがpitcher)の項目の直後に捕手を追加して下さい。</li>
+        <li>外野手(idがoutfield)の項目の直前に内野手の項目を追加して下さい。</li>
+      </ol>
+      <button id="q3-1" type="button">問2-1(ベンチを追加する)</button>
+      <button id="q3-2" type="button">問2-2(監督に中田を追加する)</button>
+      <button id="q3-3" type="button">問2-3(捕手を追加)</button>
+      <button id="q3-4" type="button">問2-3(内野手を追加)</button>
+    </div>
+    <hr>
+    <div>
+      <h2>問4.要素の追加・取得！</h2>
+      <h3 id="q4">html()とtext()を使う</h3>
+      <label id="join_runners" for="join">
+        <input id="join" type="checkbox">
+        Runnersに入りますか？
+      </label>
+      <div id="resolution"></div>
+      <ol>
+        <li>checkbox(idがjoin_runners)内の文字列部分のみを取得しalertで表示して下さい。</li>
+        <li>checkbox(idがjoin_runners)内のhtmlを取得しalertで表示して下さい。</li>
+        <li>意気込み欄(idがresolution)にrunnersに入ります！！と表示して下さい。</li>
+        <li>意気込み欄(idがresolution)にrunnersに入ります！！とh1タグで表示して下さい。</li>
+      </ol>
+      <button id="q4-1" type="button">問4-1(文字のみ取得)</button>
+      <button id="q4-2" type="button">問4-2(htmlを取得)</button>
+      <button id="q4-3" type="button">問4-3(テキストを追加)</button>
+      <button id="q4-4" type="button">問4-4(htmlを追加)</button>
+    </div>
+    <hr>
+      <h2>問5.要素の削除！</h2>
+      <h3 id="q5">remove()とempty()を使う</h3>
+      <select id="starter">
+        <option>大谷</option>
+        <option>有原</option>
+        <option>上沢</option>
+      </select>
+      <select id="relief">
+        <option>宮西</option>
+        <option>増井</option>
+        <option>鍵谷</option>
+      </select>
+      <ol>
+        <li>先発投手のセレクトボックス(idがstarter)の選択肢を削除して下さい。</li>
+        <li>中継ぎ投手のセレクトボックス(idがrelief)をセレクトボックスごと削除して下さい。</li>
+      </ol>
+      <button id="q5-1" type="button">問1-1(先発投手の選択肢を削除)</button>
+      <button id="q5-2" type="button">問1-2(中継ぎ投手のセレクトボックスを削除)</button>
+    </div>
+    <hr>
+    <div>
+      <h2>問6.valueの操作！</h2>
+      <h3 id="q6">val()を使う</h3>
+      <div>
+        <label>好きな球団は?</label>
+        <input type="text" id="favorite_team">
+      </div>
+      <ol>
+        <li>好きな球団の入力域(idがfavorite)の入力内容に日本ハムファイターズを設定して下さい。</li>
+        <li>入力されている内容を取得してalertで表示して下さい。</li>
+      </ol>
+      <button id="q6-1" type="button">問6-1(valueの設定)</button>
+      <button id="q6-2" type="button">問6-2(valueの取得)</button>
+    </div>
+    <hr>
+
+    <div>
+      <h2>問7.表示非表示の操作！</h2>
+      <h3 id="q7">show()とhide()とtoggle()を使う</h3>
+      <ol>
+        <li>idがq7の要素を非表示に下さい。</li>
+        <li>idがq7の要素を表示して下さい。</li>
+        <li>idがq7の要素の表示非表示を切り替えられるようにして下さい。</li>
+      </ol>
+      <button id="q7-1" type="button">問7-1(非表示にする)</button>
+      <button id="q7-2" type="button">問7-2(表示する)</button>
+      <button id="q7-3" type="button">問7-3(表示非表示を切り替える)</button>
+    </div>
+    <hr>
+  </body>
+</html>
