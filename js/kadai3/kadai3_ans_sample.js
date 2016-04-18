@@ -2,7 +2,7 @@ $(function() {
     // ぶたをクリックすると背景がピンクになる
     $('#change_bgcolor_btn').click(function() {
         // attrを使うことで属性を操作することができる。
-        $('body').attr('class', 'bg-pink');
+        $('body').addClass('bg-pink').removeClass('bg-blue');
     });
 
     $('#post_btn').click(function() {
