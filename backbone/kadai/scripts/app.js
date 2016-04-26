@@ -28,12 +28,18 @@ usersView.render();
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
+    defaults: {
+        name: '名無し',
+        team: '無所属',
+        position: '全部'
+    },
 });
 
 },{"backbone":"backbone"}],4:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var User = require('../models/User');
 
 module.exports = Backbone.View.extend({
     el: '#user_form',
@@ -46,15 +52,19 @@ module.exports = Backbone.View.extend({
         return this;
     },
     addUser: function() {
-        var name = $('input#name').val();
-        var team = $('input#team').val();
-        var position = $('input#position').val();
-        this.collection.add({name: name, team: team, position: position});
+        var name = $('input#name').val().trim();
+        var team = $('input#team').val().trim();
+        var position = $('input#position').val().trim();
+        var user = new User();
+        if(name) user.set('name', name);
+        if(team) user.set('team', team);
+        if(position) user.set('position', position);
+        this.collection.add(user);
     }
 });
 
 
-},{"backbone":"backbone","jquery":"jquery","underscore":"underscore"}],5:[function(require,module,exports){
+},{"../models/User":3,"backbone":"backbone","jquery":"jquery","underscore":"underscore"}],5:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
