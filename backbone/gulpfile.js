@@ -34,12 +34,12 @@ gulp.task('kadai1', () => {
     .pipe(gulp.dest('./kadai1/scripts/'));
 });
 
-gulp.task('kadai1_1', () => {
+gulp.task('kadai', () => {
     browserify({
-        entries: ['./kadai1_1/scripts/main.js'],
+        entries: ['./kadai/scripts/main.js'],
         require: ['jquery', 'underscore','backbone', 'bootstrap']
     })
     .bundle()
     .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai1_1/scripts/'));
+    .pipe(gulp.dest('./kadai/scripts/'));
 });
