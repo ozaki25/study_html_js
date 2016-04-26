@@ -10,14 +10,24 @@ gulp.task('default', ['build']);
 
 // build
 gulp.task('build', () => {
-    runSequence(['kadai1']);
+    runSequence(['work']);
 });
 
 // browserify
+gulp.task('work', () => {
+    browserify({
+        entries: ['./work/scripts/main.js'],
+        require: ['jquery', 'underscore','backbone', 'bootstrap']
+    })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./work/scripts/'));
+});
+
 gulp.task('kadai1', () => {
     browserify({
         entries: ['./kadai1/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone']
+        require: ['jquery', 'underscore','backbone', 'bootstrap']
     })
     .bundle()
     .pipe(source('app.js'))
