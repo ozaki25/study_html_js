@@ -20,5 +20,7 @@ module.exports = Backbone.View.extend({
             var userView = new UserView({model: user});
             $('#user_list').append(userView.render().el);
         }, this);
+
+        return this;
     }
 });
