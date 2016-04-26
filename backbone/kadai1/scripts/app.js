@@ -37,8 +37,8 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
-    el: '#new_user',
-    template: _.template($('#new_user_view').html()),
+    el: '#user_form',
+    template: _.template($('#form_view').html()),
     events: {
         'click #add_user': 'addUser'
     },
@@ -82,7 +82,7 @@ module.exports = Backbone.View.extend({
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var NewUserView = require('./NewUserView');
+var FormView = require('./FormView');
 var UserView = require('./UserView');
 
 module.exports = Backbone.View.extend({
@@ -94,8 +94,8 @@ module.exports = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template());
 
-        var newUserView = new NewUserView({collection: this.collection});
-        newUserView.render();
+        var formView = new FormView({collection: this.collection});
+        formView.render();
 
         _(this.collection.models).each(function(user) {
             var userView = new UserView({model: user});
@@ -104,7 +104,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./NewUserView":4,"./UserView":5,"backbone":"backbone","jquery":"jquery","underscore":"underscore"}],7:[function(require,module,exports){
+},{"./FormView":4,"./UserView":5,"backbone":"backbone","jquery":"jquery","underscore":"underscore"}],7:[function(require,module,exports){
 /**
  * Backbone localStorage Adapter
  * Version 1.1.16

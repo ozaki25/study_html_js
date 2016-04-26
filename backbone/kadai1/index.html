@@ -4,7 +4,7 @@
     <head>
         <title>backbone_moarionette_template</title>
         <link rel="stylesheet"  media="screen" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet"  media="screen" href="./styles/main.css">
+        <link rel="stylesheet"  media="screen" href="./styles/app.css">
         <meta charset="UTF-8">
     </head>
     <body>
@@ -13,7 +13,7 @@
       <script id="users_view" type="text/template">
         <div class="panel panel-info">
           <div class="panel-heading">ユーザ一覧</div>
-          <div id="new_user" class="panel-body">
+          <div id="user_form" class="panel-body">
           </div>
           <ul id="user_list" class="list-group"></ul>
         </div>
@@ -24,7 +24,7 @@
         <a href="#" class="btn btn-link btn-xs delete">削除</a>
       </script>
 
-      <script id="new_user_view" type="text/template">
+      <script id="form_view" type="text/template">
         <form class="form-inline">
           <div class="form-group">
             <label class="control-label">名前</label>

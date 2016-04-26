@@ -3,8 +3,8 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
-    el: '#new_user',
-    template: _.template($('#new_user_view').html()),
+    el: '#user_form',
+    template: _.template($('#form_view').html()),
     events: {
         'click #add_user': 'addUser'
     },
