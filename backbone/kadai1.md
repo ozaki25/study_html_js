@@ -1,6 +1,6 @@
 # 課題１
 ## やること
-* backboneのviewを作成してその内容を表示してみる
+* backboneのviewを作成してユーザ一覧の画面を表示してみる
 
 ## 覚えてほしいこと
 * backboneのviewの使い方
