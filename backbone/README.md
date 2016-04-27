@@ -26,6 +26,7 @@ http://dotinstall.com/lessons/basic_backbonejs
   * node_modules.zip
     * ファイルサイズが大きいのでzipにしています
     * zipが置いてあるディレクトリに展開しておいて下さい
+    * パスワードはbackboneです
   * node_modules
     * node_modules.zipを展開したもの
     * インストールされたライブラリが入っています
