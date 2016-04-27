@@ -4,5 +4,5 @@ var User = require('../models/User');
 
 module.exports = Backbone.Collection.extend({
     mdoel: User,
-    localStorage: new LocalStorage('backbone_sample'),
+    localStorage: new LocalStorage('backbone_sample')
 });
