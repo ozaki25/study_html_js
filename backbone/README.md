@@ -23,7 +23,11 @@ http://dotinstall.com/lessons/basic_backbonejs
     * タスクランナーの設定ファイルです
     * ここでは作成した複数のjsファイルを一つにまとめる処理を記載してあります
     * 課題を進めていく上で編集は不要です
+  * node_modules.zip
+    * ファイルサイズが大きいのでzipにしています
+    * zipが置いてあるディレクトリに展開しておいて下さい
   * node_modules
+    * node_modules.zipを展開したもの
     * インストールされたライブラリが入っています
     * jQueryやbackbone等はここに入っているものを使います
 * javascriptの開発について
