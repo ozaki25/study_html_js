@@ -28,6 +28,8 @@
   * scripts/collections/にUsers.jsを作成して下さい
   * modelの時と同様にbackboneを使えるようにするために以下を記述します
   <pre>`var Backbone = require('backbone');`</pre>
+  * 今回はサーバ側は用意せずデータの保存先にlocalStorageを使うのでそのための記述をします
+  <pre>`var LocalStorage = require('backbone.LocalStorage');`</pre>
   * Userモデルを使用するのでこちらもrequireします
   <pre>`var User = require('../models/User');`</pre>
   * backboneのcollectionを継承するので以下の記述をします
@@ -37,7 +39,10 @@
     `});`
   </pre>
   * 次にこのcollectionがどのmodelを束ねているのか設定します
-  <pre>`model: User`</pre>
+  <pre>`model: User,`</pre>
+  * localStorageを使うための設定を書きます
+  * 'backbone_sample'の部分はDB名のようなものなのでどんなものでも大丈夫です
+  <pre>`localStorage: new LocalStorage('backbone_sample')`</pre>
   * これでcollectionの準備はOKです
 
 #### Viewの構造をmodelとcollectionに対応づけ
