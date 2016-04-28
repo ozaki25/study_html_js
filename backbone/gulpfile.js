@@ -63,3 +63,13 @@ gulp.task('kadai4', () => {
     .pipe(source('app.js'))
     .pipe(gulp.dest('./kadai4/scripts/'));
 });
+
+gulp.task('kadai5', () => {
+    browserify({
+        entries: ['./kadai5/scripts/main.js'],
+        require: ['jquery', 'underscore','backbone', 'bootstrap']
+    })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./kadai5/scripts/'));
+});
