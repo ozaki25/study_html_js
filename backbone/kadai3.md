@@ -66,7 +66,7 @@
 * templateとrenderの間に以下の処理を書いて下さい
 <pre>
     `initialize: function () {`
-        `this.listenTo(this.collection, 'all', this.render);`
+        `this.listenTo(this.collection, 'update', this.render);`
     `},`
 </pre>
 * 内容について確認します
@@ -76,8 +76,9 @@
     * listenToメソッドはオブジェクトの状態監視を開始するメソッドです
     * this.collectionが監視する対象
       * collectionやmodelを指定する
-    * 'all'が監視する動作
-      * 今は全ての動作を指定していますが、modelが削除された場合とかcollectionにmodelが追加された場合とかmodelの特定のカラムが更新された場合等細かな指定も可能です
+    * 'update'が監視する動作
+      * collectionの内容が更新された時(modelが追加されたり削除されたり)の動作を指定しています
+      * 他にも指定できる内容はたくさんあります
       * http://backbonejs.org/#Events-catalog
     * this.renderが監視する対象が監視する動作をした時に呼び出すメソッド
   * この記述によりUserViewがnewされたタイミングで、紐付いているcollectionの状態の監視をスタートし、collectionが持っているmodelが削除された場合等を検知してrenderを実行して再描画します
