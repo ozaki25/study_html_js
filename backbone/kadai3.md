@@ -36,8 +36,8 @@
     `},`
 </pre>
 * これはclassがdeleteの部分をclickしたらdeleteUserメソッドを実行するという意味になっています
-* clickの部分にはmouseoverやdblclick等も指定することができます
-* .deleteの部分はjQueryのセレクタの形のものを指定できます
+  * clickの部分にはmouseoverやdblclick等も指定することができます
+  * .deleteの部分はjQueryのセレクタの形のものを指定できます
 * イベントの登録部分ができたので発火時に呼び出されるdeleteUserメソッドを作ります
 * renderの下に以下の内容を追記して下さい(renderの閉じカッコの後にカンマを追加するのを忘れずに「},」)
 <pre>
@@ -53,6 +53,7 @@
   * e.preventDefault()
     * preventDefault()を実行すると発生しようとしていたイベントが全てキャンセルされます
     * ここではhrefに指定している#へのアクセスをキャンセルしています
+      * このケースではpreventDefaultしなくても問題ありませんが一応書いてます
   * this.model.destroy()
     * this.modelはこのviewに紐付けられたmodelです
     * modelのdestroyメソッドを呼び出すことでそのmdelは破棄されます
@@ -72,7 +73,7 @@
   * initialize
     * initializeメソッドはnewした時に実行されます
   * this.listenTo(this.collection, 'all', this.render)
-    * listenToメソッドはオブジェクトの状態を監視を開始するメソッドです
+    * listenToメソッドはオブジェクトの状態監視を開始するメソッドです
     * this.collectionが監視する対象
       * collectionやmodelを指定する
     * 'all'が監視する動作
