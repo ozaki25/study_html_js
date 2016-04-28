@@ -5,5 +5,5 @@ module.exports = Backbone.Model.extend({
         name: '名無し',
         team: '無所属',
         position: '全部'
-    },
+    }
 });
