@@ -16,10 +16,10 @@ var Users = require('./collections/Users.js');
 var UsersView = require('./views/UsersView');
 
 var users = new Users([
-    {id: 1, name: '大谷'},
-    {id: 2, name: '藤浪'},
-    {id: 3, name: '中田'},
-    {id: 4, name: '筒香'}
+    {name: '大谷'},
+    {name: '藤浪'},
+    {name: '中田'},
+    {name: '筒香'}
 ]);
 var usersView = new UsersView({collection: users});
 usersView.render();
