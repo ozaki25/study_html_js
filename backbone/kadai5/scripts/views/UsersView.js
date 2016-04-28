@@ -1,26 +1,24 @@
-var $ = require('jquery');
 var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var FormView = require('./FormView');
 var UserView = require('./UserView');
 
-module.exports = Marionette.View.extend({
+module.exports = Marionette.ItemView.extend({
     el: '#users',
-    template: _.template($('#users_view').html()),
-    initialize: function () {
-        this.listenTo(this.collection, 'update', this.render);
+    template: '#users_view',
+    ui: {
+        userList: '#user_list'
     },
-    render: function() {
-        this.$el.html(this.template());
-
+    collectionEvents: {
+        'update': 'render'
+    },
+    onRender: function() {
         var formView = new FormView({collection: this.collection});
         formView.render();
 
         _(this.collection.models).each(function(user) {
             var userView = new UserView({model: user});
-            $('#user_list').append(userView.render().el);
+            this.ui.userList.append(userView.render().el);
         }, this);
-
-        return this;
     }
 });

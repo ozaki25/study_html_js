@@ -1,22 +1,21 @@
-var $ = require('jquery');
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
-module.exports = Marionette.View.extend({
+module.exports = Marionette.ItemView.extend({
     el: '#user_form',
-    template: _.template($('#form_view').html()),
+    template: '#form_view',
+    ui: {
+        inputName: 'input#name',
+        inputTeam: 'input#team',
+        inputPosition: 'input#position'
+    },
     events: {
         'click #add_user': 'addUser'
     },
-    render: function() {
-        this.$el.html(this.template());
-        return this;
-    },
     addUser: function() {
-        var name = $('input#name').val().trim();
-        var team = $('input#team').val().trim();
-        var position = $('input#position').val().trim();
+        var name = this.ui.inputName.val().trim();
+        var team = this.ui.inputTeam.val().trim();
+        var position = this.ui.inputPosition.val().trim();
         var user = new User();
         if(name) user.set('name', name);
         if(team) user.set('team', team);

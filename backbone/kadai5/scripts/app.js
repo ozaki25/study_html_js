@@ -9,9 +9,6 @@ module.exports = Backbone.Collection.extend({
 });
 
 },{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":7}],2:[function(require,module,exports){
-var $ = jQuery = require('jquery');
-var _ = require('underscore');
-var Backbone = require('backbone');
 var Users = require('./collections/Users.js');
 var UsersView = require('./views/UsersView');
 
@@ -21,10 +18,12 @@ var users = new Users([
     {name: '中田', team: '日本ハム', position: 'ファースト'},
     {name: '筒香', team: '横浜DeNA', position: 'レフト'}
 ]);
-var usersView = new UsersView({collection: users});
-usersView.render();
+users.fetch().done(function() {
+    var usersView = new UsersView({collection: users});
+    usersView.render();
+});
 
-},{"./collections/Users.js":1,"./views/UsersView":6,"backbone":"backbone","jquery":"jquery","underscore":"underscore"}],3:[function(require,module,exports){
+},{"./collections/Users.js":1,"./views/UsersView":6}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -36,25 +35,24 @@ module.exports = Backbone.Model.extend({
 });
 
 },{"backbone":"backbone"}],4:[function(require,module,exports){
-var $ = require('jquery');
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
-module.exports = Marionette.View.extend({
+module.exports = Marionette.ItemView.extend({
     el: '#user_form',
-    template: _.template($('#form_view').html()),
+    template: '#form_view',
+    ui: {
+        inputName: 'input#name',
+        inputTeam: 'input#team',
+        inputPosition: 'input#position'
+    },
     events: {
         'click #add_user': 'addUser'
     },
-    render: function() {
-        this.$el.html(this.template());
-        return this;
-    },
     addUser: function() {
-        var name = $('input#name').val().trim();
-        var team = $('input#team').val().trim();
-        var position = $('input#position').val().trim();
+        var name = this.ui.inputName.val().trim();
+        var team = this.ui.inputTeam.val().trim();
+        var position = this.ui.inputPosition.val().trim();
         var user = new User();
         if(name) user.set('name', name);
         if(team) user.set('team', team);
@@ -64,22 +62,15 @@ module.exports = Marionette.View.extend({
 });
 
 
-},{"../models/User":3,"backbone.marionette":9,"jquery":"jquery","underscore":"underscore"}],5:[function(require,module,exports){
-var $ = require('jquery');
-var _ = require('underscore');
+},{"../models/User":3,"backbone.marionette":9}],5:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
-module.exports = Marionette.View.extend({
+module.exports = Marionette.ItemView.extend({
     tagName: 'li',
     className: 'list-group-item',
-    template: _.template($('#user_view').html()),
+    template: '#user_view',
     events: {
         'click .delete': 'deleteUser'
-    },
-    render: function() {
-        var template = this.template(this.model.toJSON());
-        this.$el.html(template);
-        return this;
     },
     deleteUser: function(e) {
         e.preventDefault();
@@ -87,35 +78,33 @@ module.exports = Marionette.View.extend({
     }
 });
 
-},{"backbone.marionette":9,"jquery":"jquery","underscore":"underscore"}],6:[function(require,module,exports){
-var $ = require('jquery');
+},{"backbone.marionette":9}],6:[function(require,module,exports){
 var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var FormView = require('./FormView');
 var UserView = require('./UserView');
 
-module.exports = Marionette.View.extend({
+module.exports = Marionette.ItemView.extend({
     el: '#users',
-    template: _.template($('#users_view').html()),
-    initialize: function () {
-        this.listenTo(this.collection, 'update', this.render);
+    template: '#users_view',
+    ui: {
+        userList: '#user_list'
     },
-    render: function() {
-        this.$el.html(this.template());
-
+    collectionEvents: {
+        'update': 'render'
+    },
+    onRender: function() {
         var formView = new FormView({collection: this.collection});
         formView.render();
 
         _(this.collection.models).each(function(user) {
             var userView = new UserView({model: user});
-            $('#user_list').append(userView.render().el);
+            this.ui.userList.append(userView.render().el);
         }, this);
-
-        return this;
     }
 });
 
-},{"./FormView":4,"./UserView":5,"backbone.marionette":9,"jquery":"jquery","underscore":"underscore"}],7:[function(require,module,exports){
+},{"./FormView":4,"./UserView":5,"backbone.marionette":9,"underscore":"underscore"}],7:[function(require,module,exports){
 /**
  * Backbone localStorage Adapter
  * Version 1.1.16
