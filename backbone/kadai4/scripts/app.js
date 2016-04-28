@@ -98,9 +98,10 @@ module.exports = Backbone.View.extend({
     el: '#users',
     template: _.template($('#users_view').html()),
     initialize: function () {
-        this.listenTo(this.collection, 'all', this.render);
+        this.listenTo(this.collection, 'update', this.render);
     },
     render: function() {
+        console.log('Users.render()');
         this.$el.html(this.template());
 
         var formView = new FormView({collection: this.collection});
