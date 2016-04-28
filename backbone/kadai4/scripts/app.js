@@ -59,7 +59,7 @@ module.exports = Backbone.View.extend({
         if(name) user.set('name', name);
         if(team) user.set('team', team);
         if(position) user.set('position', position);
-        this.collection.creatae(user);
+        this.collection.create(user);
     }
 });
 
