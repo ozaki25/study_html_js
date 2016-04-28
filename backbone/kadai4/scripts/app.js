@@ -5,7 +5,7 @@ var User = require('../models/User');
 
 module.exports = Backbone.Collection.extend({
     mdoel: User,
-    localStorage: new LocalStorage('backbone_sample'),
+    localStorage: new LocalStorage('backbone_sample')
 });
 
 },{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":7}],2:[function(require,module,exports){
@@ -16,10 +16,10 @@ var Users = require('./collections/Users.js');
 var UsersView = require('./views/UsersView');
 
 var users = new Users([
-    {id: 1, name: '大谷', team: '日本ハム', position: 'ピッチャー'},
-    {id: 2, name: '藤浪', team: '阪神', position: 'ピッチャー'},
-    {id: 3, name: '中田', team: '日本ハム', position: 'ファースト'},
-    {id: 4, name: '筒香', team: '横浜DeNA', position: 'レフト'}
+    {name: '大谷', team: '日本ハム', position: 'ピッチャー'},
+    {name: '藤浪', team: '阪神', position: 'ピッチャー'},
+    {name: '中田', team: '日本ハム', position: 'ファースト'},
+    {name: '筒香', team: '横浜DeNA', position: 'レフト'}
 ]);
 var usersView = new UsersView({collection: users});
 usersView.render();
@@ -32,7 +32,7 @@ module.exports = Backbone.Model.extend({
         name: '名無し',
         team: '無所属',
         position: '全部'
-    },
+    }
 });
 
 },{"backbone":"backbone"}],4:[function(require,module,exports){
