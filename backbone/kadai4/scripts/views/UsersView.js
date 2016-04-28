@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var FormView = require('./FormView');
 var UserView = require('./UserView');
 
 module.exports = Backbone.View.extend({
@@ -11,6 +12,9 @@ module.exports = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(this.template());
+
+        var formView = new FormView({collection: this.collection});
+        formView.render();
 
         _(this.collection.models).each(function(user) {
             var userView = new UserView({model: user});
