@@ -18,10 +18,8 @@ var users = new Users([
     {name: '中田', team: '日本ハム', position: 'ファースト'},
     {name: '筒香', team: '横浜DeNA', position: 'レフト'}
 ]);
-users.fetch().done(function() {
-    var usersView = new UsersView({collection: users});
-    usersView.render();
-});
+var usersView = new UsersView({collection: users});
+usersView.render();
 
 },{"./collections/Users.js":1,"./views/UsersView":6}],3:[function(require,module,exports){
 var Backbone = require('backbone');
