@@ -5,9 +5,15 @@
 ## 覚えてほしいこと
 * marionetteの使い方
 
-## marionetteのviewを使う
+## marionetteについて
 
-#### backboneのviewを継承している部分をmarionetteのviewに変更する
+* 2系の最新版を使うことを想定して書いています
+* バージョンが古いと動きがけっこう違っているようなので困ったら公式サイトを見るのがいいです
+* http://marionettejs.com/docs/v2.4.5/
+
+## marionetteを使う
+
+## backboneのviewを継承している部分をmarionetteのviewに変更する
 
 * UserView.js,UsersView.js,FormView.jsに対して以下の修正を加える
   1. marionetteをrequireを追加する
