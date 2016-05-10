@@ -8,25 +8,28 @@
 ## regionって何なのか
 
 * (図を使ってわかりやすく説明しているブログがあったんだけど見つからない。。。)
+http://marionettejs.com/docs/v2.4.5/marionette.region.html
 
 ## レイアウトの変更
 
 * region適用のためにレイアウトを少し変更します
-  * ユーザ一覧と新規登録を別のパネルで表示するようにする
+ * ユーザ一覧と新規登録を別のパネルで表示するようにする（↓こんなイメージ）
+ ![img7.png](./images/img7.png)
 * index.htmlを修正します
-  * ユーザ一覧と新規登録を入れ込むスペースを作る
-  <pre>`<div id="users" class="container"></div>`</pre>
-  ↓
-  <pre>
-      `<div id="main" class="container">`
-        `<div class="row">`
-          `<div id="users" class="col-md-9">`
-          `</div>`
-          `<div id="new_user" class="col-md-3">`
-          `</div>`
-        `</div>`
-      `</div>`
-  </pre>
+ * ユーザ一覧と新規登録を入れ込むスペースを作る
+   * id="users"の中にユーザ一覧、id="new_user"の中に新規登録フォームを入れる感じになる
+   <pre>`<div id="users" class="container"></div>`</pre>
+   ↓
+   <pre>
+       `<div id="main" class="container">`
+         `<div class="row">`
+           `<div id="users" class="col-md-9">`
+           `</div>`
+           `<div id="new_user" class="col-md-3">`
+           `</div>`
+         `</div>`
+       `</div>`
+   </pre>
   * 以下の行を削除
   <pre>`<div id="user_form" class="panel-body"></div>`</pre>
   * id="form_view"の部分を以下に変える
@@ -69,7 +72,8 @@
   * marionetteとFormViewのrequireを追加
   <pre>var Marionette = require('backbone.marionette');</pre>
   <pre>var FormView = require('./views/FormView');</pre>
-  * marionetteのApplicationのインスタンスを作成します
+  * usersViewをnewしてる行とrenderしてる行を削除します
+  * marionetteのApplicationのインスタンスを作成します(http://marionettejs.com/docs/v2.4.5/marionette.application.html)
   <pre>
     var app = new Marionette.Application({
       // 中身は後で
@@ -113,8 +117,6 @@
 ## 動作確認
 
 * gulpを実行し動作を確認して下さい
-* 見た目は以下のようになっているはずです
-![img7.png](./images/img7.png)
 
 #### 開発内容の確認
 * 課題６が完了した状態のサンプルがあるので自分で書いたコードと見比べて見てください
