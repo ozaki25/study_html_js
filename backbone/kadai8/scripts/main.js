@@ -1,19 +1,15 @@
 var Marionette = require('backbone.marionette');
-var Users = require('./collections/Users.js');
-var UsersView = require('./views/UsersView');
-var FormView = require('./views/FormView');
+var Users = require('./collections/Users');
+var MainView = require('./views/MainView');
 
 var users = new Users();
-
 var app = new Marionette.Application({
     regions: {
-        users: '#users',
-        newUser: '#new_user'
+        main: '#main'
     },
     onStart: function() {
         users.fetch().done(function() {
-            this.users.show(new UsersView({collection: users}));
-            this.newUser.show(new FormView({collection: users}));
+            this.main.show(new MainView({collection: users}));
         }.bind(this));
     }
 });
