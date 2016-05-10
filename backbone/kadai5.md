@@ -4,6 +4,8 @@
 
 ## 覚えてほしいこと
 * marionetteの使い方
+ * renderのしかた
+ * uiの使い方
 
 ## marionetteについて
 
@@ -97,11 +99,11 @@
         userList: '#user_list'
     },
 </pre>
-* onRenderメソッドの中野$('#user_list').append・・・の部分を修正して下さい
+* onRenderメソッドの中の$('#user_list').append・・・の部分を修正して下さい
 <pre>this.ui.userList.append(userView.render().el);</pre>
-* 使用するセレクタをuiというプロパティでまとめて宣言しておきます
-  * :の左側が変数名、右側がセレクタ
-* 使用する時はthis.ui.◯◯という形で使います
+ * 使用するセレクタをuiというプロパティでまとめて宣言しています
+   * :の左側が変数名、右側がセレクタ
+ * 使用する時はthis.ui.◯◯という形で使います
 * FormView.jsも同様に修正します
 * templateの下に以下の内容を追加します
 <pre>
@@ -118,7 +120,7 @@
     var position = this.ui.inputPosition.val().trim();
 </pre>
 
-#### eventの設定のしかたを変更
+#### イベントの検知のしかたを変更
 
 * 今はUsersViewでcollectionに変更があった場合のイベントをlistenToを使って検知していました
 * marionetteを使う場合はcollectionのイベントならcollectionEvents、modelのイベントならmodelEventsを使って定義します
