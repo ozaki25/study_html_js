@@ -30,7 +30,7 @@
 
 #### event部分の削除
 
-* 現在はUsersViewでcollectiomEventsを設定し、collectionに追加や削除がされたことを検知して再renderしていました
+* 現在はUsersViewでcollectionEventsを設定し、collectionに追加や削除がされたことを検知して再renderしていました
 * このcollectionの監視もmarionette側で定義されているので自分で書く必要はありません
 * UsersViewのcoollectionEventsは削除して下さい
 
