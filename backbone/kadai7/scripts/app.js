@@ -14,12 +14,7 @@ var Users = require('./collections/Users.js');
 var UsersView = require('./views/UsersView');
 var FormView = require('./views/FormView');
 
-var users = new Users([
-    {name: '大谷', team: '日本ハム', position: 'ピッチャー'},
-    {name: '藤浪', team: '阪神', position: 'ピッチャー'},
-    {name: '中田', team: '日本ハム', position: 'ファースト'},
-    {name: '筒香', team: '横浜DeNA', position: 'レフト'}
-]);
+var users = new Users();
 
 var app = new Marionette.Application({
     regions: {
@@ -27,8 +22,10 @@ var app = new Marionette.Application({
         newUser: '#new_user'
     },
     onStart: function() {
-        this.users.show(new UsersView({collection: users}));
-        this.newUser.show(new FormView({collection: users}));
+        users.fetch().done(function() {
+            this.users.show(new UsersView({collection: users}));
+            this.newUser.show(new FormView({collection: users}));
+        }.bind(this));
     }
 });
 
@@ -95,20 +92,10 @@ var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
 
-module.exports = Marionette.ItemView.extend({
-    template: '#users_view',
-    ui: {
-        userList: '#user_list'
-    },
-    collectionEvents: {
-        'update': 'render'
-    },
-    onRender: function() {
-        _(this.collection.models).each(function(user) {
-            var userView = new UserView({model: user});
-            this.ui.userList.append(userView.render().el);
-        }, this);
-    }
+module.exports = Marionette.CompositeView.extend({
+    childView: UserView,
+    childViewContainer: '#user_list',
+    template: '#users_view'
 });
 
 },{"./UserView":5,"backbone.marionette":9,"underscore":"underscore"}],7:[function(require,module,exports){
