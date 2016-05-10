@@ -24,72 +24,17 @@ gulp.task('work', () => {
     .pipe(gulp.dest('./work/scripts/'));
 });
 
-gulp.task('kadai1', () => {
-    browserify({
-        entries: ['./kadai1/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai1/scripts/'));
-});
+var range = [1,2,3,4,5,6,7,8];
 
-gulp.task('kadai2', () => {
-    browserify({
-        entries: ['./kadai2/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai2/scripts/'));
-});
-
-gulp.task('kadai3', () => {
-    browserify({
-        entries: ['./kadai3/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai3/scripts/'));
-});
-
-gulp.task('kadai4', () => {
-    browserify({
-        entries: ['./kadai4/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai4/scripts/'));
-});
-
-gulp.task('kadai5', () => {
-    browserify({
-        entries: ['./kadai5/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai5/scripts/'));
-});
-
-gulp.task('kadai6', () => {
-    browserify({
-        entries: ['./kadai6/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai6/scripts/'));
-});
-
-gulp.task('kadai7', () => {
-    browserify({
-        entries: ['./kadai7/scripts/main.js'],
-        require: ['jquery', 'underscore','backbone', 'bootstrap']
-    })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./kadai7/scripts/'));
+range.forEach(function(i) {
+    var task = 'kadai' + i;
+    gulp.task(task, () => {
+        browserify({
+            entries: ['./' + task + '/scripts/main.js'],
+            require: ['jquery', 'underscore','backbone', 'bootstrap']
+        })
+        .bundle()
+        .pipe(source('app.js'))
+        .pipe(gulp.dest('./' + task + '/scripts/'));
+    });
 });
