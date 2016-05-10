@@ -82,6 +82,7 @@
   * render -> onRender
     * onRenderメソッドはrenderメソッドが呼ばれた直後に呼ばれます
     * renderメソッドはmarionette側で定義されているので、そちらのrenderが終わった直後にこのメソッドが呼ばれることになります
+    * http://marionettejs.com/docs/v2.4.5/marionette.itemview.html#render--onrender-event
   * this.$el.html(this.template()); を削除
     * この処理はmarionetteで定義されているrenderメソッドで実行されるので削除します
   * return this; を削除
