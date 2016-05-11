@@ -1,4 +1,4 @@
-var Users = require('./collections/Users.js');
+var Users = require('./collections/Users');
 var UsersView = require('./views/UsersView');
 
 var users = new Users([
