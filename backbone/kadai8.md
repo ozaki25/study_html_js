@@ -9,7 +9,7 @@
 * 修正後のイメージはこんな感じです
 ![img14.png](./images/img14.png)
 * main.jsでheaderとmainのregionを作り、mainの中で残りの3つのregionを作る構成にします
-  * 今はmain.jsでheaderとusersとnreUserを作っている
+  * 今はmain.jsでheaderとusersとnewUserを作っている
   ![img13.png](./images/img13.png)
 
 #### 1階層目
@@ -54,10 +54,8 @@
 <pre>
   `<div id="main" class="container">`
     `<div class="row">`
-      `<div id="users" class="col-md-9">`
-      `</div>`
-      `<div id="new_user" class="col-md-3">`
-      `</div>`
+      `<div id="users" class="col-md-9"></div>`
+      `<div id="new_user" class="col-md-3"></div>`
     `</div>`
   `</div>`
 </pre>
@@ -81,8 +79,7 @@
 ![img12.png](./images/img12.png)
 
 #### 2階層目
-* 次にmainViewでusersとdetailとnewUserのregionを定義しviewをshowします
-* まずは既存のものが画面に表示されるようにします
+* 次にmainViewでusersとnewUserのregionを定義しviewをshowします
 
 ##### mainView.jsの修正
 * regionを定義する
