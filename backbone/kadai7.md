@@ -34,12 +34,53 @@
 * このcollectionの監視もmarionette側で定義されているので自分で書く必要はありません
 * UsersViewのcoollectionEventsは削除して下さい
 
-## 既存機能の修正(ここはmarionette関係ないです。。)
+## 機能の修正
+
+#### headerを追加する
+
+* headerを追加します
+* 完成イメージはこんなです
+![img10.png](./images/img10.png)
+
+##### HeaderView.jsを作る
+* viewsディレクトリにHeaderView.jsを作って下さい
+* 内容は以下の通りです(marionetteを使う新しviewもこれしか書かなくてすむ！)
+<pre>
+  var Marionette = require('backbone.marionette');
+
+  module.exports = Marionette.ItemView.extend({
+    template: '#header_view'
+  });
+</pre>
+
+##### main.jsの修正
+* requireの追加
+<pre>var HeaderView = require('./views/HeaderView');</pre>
+* regionに追加
+<pre>header: '#header',</pre>
+* onStartの中でのshowを一行追加
+<pre>this.header.show(new HeaderView());</pre>
+
+##### index.htmlの修正
+* header用のテンプレートを追加
+<pre>
+  `<script id="header_view" type="text/template">`
+    `<nav class="navbar navbar-default">`
+      `<div class="container">`
+        `<div class="navbar-header">`
+          `<a href="#" class="navbar-brand">選手名鑑</a>`
+        `</div>`
+      `</div>`
+    `</nav>`
+  `</script>`
+</pre>
+
+#### DBとの連携(ここはmarionette関係ないです。。)
 
 * 今までは、DB(Backbone.lovalstorage)を使っておきながら、毎回表示内容を初期化してDBを全く活用していませんでした
 * なのでDBをちゃんと使うように修正します
 
-#### main.jsの修正
+##### main.jsの修正
 
 * 毎回データを作って無理やりcollectionに入れていた部分を修正します
 <pre>
