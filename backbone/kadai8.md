@@ -9,8 +9,6 @@
 * ユーザの名前だけを出す一覧を作って、名前をクリックするとその人の詳細が真ん中に表示されるようにする
 * 完成形のイメージはこんな
 ![img8.png](./images/img8.png)
-* ちなみに課題７までではこんな感じになっています
-![img12.png](./images/img12.png)
 
 ## modelのカラムを増やす
 * ユーザの詳細画面を作成することになるのでカラムをもう少し増やしてみます
@@ -114,6 +112,7 @@
 ![img11.png](./images/img11.png)
 * main.jsでheaderとmainのregionを作り、mainの中で残りの3つのregionを作る構成にします
   * 今はmain.jsでheaderとusersとnreUserを作っている
+  ![img13.png](./images/img13.png)
 
 #### 1階層目
 * 最初の階層はmain.jsでheaderとmainのregionを定義しviewをshowします
@@ -181,7 +180,7 @@
 * header部分ととデバッグ用に入れた「テスト」の文字が出てればOKです
   * 確認が終わったら`<h1>`の部分は消しておいて下さい
 * ここまでで以下の図の部分までできました
-![img11.png](./images/img11.png)
+![img12.png](./images/img12.png)
 
 #### 2階層目
 * 次にmainViewでusersとdetailとnewUserのregionを定義しviewをshowします
