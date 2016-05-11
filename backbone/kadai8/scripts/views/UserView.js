@@ -1,21 +1,14 @@
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
-    tagName: 'a',
-    className: 'user-name list-group-item',
-    attributes: {
-        href: '#'
-    },
+    tagName: 'li',
+    className: 'list-group-item',
     template: '#user_view',
     events: {
-        'click .delete': 'deleteUser',
-        'click': 'showDetail'
+        'click .delete': 'deleteUser'
     },
     deleteUser: function(e) {
         e.preventDefault();
         this.model.destroy();
-    },
-    showDetail: function() {
-        this.triggerMethod('show:detail');
     }
 });

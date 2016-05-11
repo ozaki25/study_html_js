@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
   </head>
   <body>
-
     <div id="header"></div>
     <div id="main" class="container"></div>
 
@@ -24,7 +23,8 @@
 
     <script id="main_view" type="text/template">
       <div class="row">
-        <div id="users" class="col-md-9"></div>
+        <div id="users" class="col-md-3"></div>
+        <div id="user_detail" class="col-md-6"></div>
         <div id="new_user" class="col-md-3"></div>
       </div>
     </script>
@@ -37,8 +37,32 @@
     </script>
 
     <script id="user_view" type="text/template">
-      <%- name %>（<%- team %>） <%- position %>
+      <%- name %>
       <a href="#" class="btn btn-link btn-xs delete">削除</a>
+    </script>
+
+    <script id="detail_view" type="text/template">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><%- name %> の詳細</div>
+        <div class="panel-body">
+          <dl class="dl-horizontal">
+            <dt>名前</dt>
+            <dd><%- name %></dd>
+            <dt>チーム</dt>
+            <dd><%- team %></dd>
+            <dt>年齢</dt>
+            <dd><%- age %></dd>
+            <dt>背番号</dt>
+            <dd><%- number %></dd>
+            <dt>ポジション</dt>
+            <dd><%- position %></dd>
+            <dt>経歴</dt>
+            <dd><%- career %></dd>
+            <dt>タイトル</dt>
+            <dd><%- title %></dd>
+          </dl>
+        </div>
+      </div>
     </script>
 
     <script id="form_view" type="text/template">

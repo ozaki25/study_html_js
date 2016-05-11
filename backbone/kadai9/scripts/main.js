@@ -4,7 +4,6 @@ var HeaderView = require('./views/HeaderView');
 var MainView = require('./views/MainView');
 
 var users = new Users();
-
 var app = new Marionette.Application({
     regions: {
         header: '#header',
