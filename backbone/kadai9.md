@@ -178,17 +178,14 @@
 </pre>
 ##### main.jsを修正
 * requireを追加
-  <pre>
-    var _ = require('underscore');
-    var DetailView = require('./DetailView');
-  </pre>
+  <pre>var DetailView = require('./DetailView');</pre>
 * regionを追加
   <pre>userDetail: '#user_detail',</pre>
 * onRenderにdetailのrenderも追加
   * データが0件だとここでエラーが出ます。データが0件の時はこの行をコメントアウトしてデータを追加してから再実行して下さい
-  <pre>this.userDetail.show(new DetailView({model: _(this.collection.models).first()}));</pre>
+  <pre>this.userDetail.show(new DetailView({model: this.collection.models[0]}));</pre>
   * DetailViewはmodelと紐づくviewです
-  * アンダースコアのfirstメソッドを利用してcollectionの中の一番目のmodelを取得しています
+  * collectionの中の一番目のmodelを取得しています
 ##### 動作確認
 * gulpを実行して画面を確認して下さい
 * うまくいっていればこのような画面がでます
