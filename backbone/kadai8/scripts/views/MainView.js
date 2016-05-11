@@ -5,8 +5,6 @@ var DetailView = require('./DetailView');
 var FormView = require('./FormView');
 
 module.exports = Marionette.LayoutView.extend({
-    tagName: 'div',
-    className: 'row',
     template: '#main_view',
     regions: {
         users: '#users',

@@ -60,8 +60,6 @@ module.exports = Backbone.Model.extend({
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
-    tagName: 'div',
-    className: 'panel panel-primary',
     template: '#detail_view',
     modelEvents: {
         'remove': 'removed'
@@ -76,8 +74,6 @@ var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
 module.exports = Marionette.ItemView.extend({
-    tagName: 'div',
-    className: 'panel panel-success',
     template: '#form_view',
     ui: {
         inputName: 'input#name',
@@ -129,8 +125,6 @@ var DetailView = require('./DetailView');
 var FormView = require('./FormView');
 
 module.exports = Marionette.LayoutView.extend({
-    tagName: 'div',
-    className: 'row',
     template: '#main_view',
     regions: {
         users: '#users',
@@ -185,8 +179,6 @@ var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
 
 module.exports = Marionette.CompositeView.extend({
-    tagName: 'div',
-    className: 'panel panel-info',
     childView: UserView,
     childViewContainer: '#user_list',
     template: '#users_view'

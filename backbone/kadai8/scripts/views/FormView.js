@@ -2,8 +2,6 @@ var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
 module.exports = Marionette.ItemView.extend({
-    tagName: 'div',
-    className: 'panel panel-success',
     template: '#form_view',
     ui: {
         inputName: 'input#name',
