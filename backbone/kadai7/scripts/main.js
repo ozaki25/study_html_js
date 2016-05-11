@@ -1,5 +1,5 @@
 var Marionette = require('backbone.marionette');
-var Users = require('./collections/Users.js');
+var Users = require('./collections/Users');
 var HeaderView = require('./views/HeaderView');
 var UsersView = require('./views/UsersView');
 var FormView = require('./views/FormView');
