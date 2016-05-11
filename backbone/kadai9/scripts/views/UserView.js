@@ -15,7 +15,8 @@ module.exports = Marionette.ItemView.extend({
         e.preventDefault();
         this.model.destroy();
     },
-    showDetail: function() {
+    showDetail: function(e) {
+        e.preventDefault();
         this.triggerMethod('show:detail');
     }
 });

@@ -5,18 +5,7 @@ var User = require('../models/User');
 
 module.exports = Backbone.Collection.extend({
     mdoel: User,
-    localStorage: new LocalStorage('backbone_sample'),
-    addDefaultUser: function() {
-        this.create({
-            name: '大谷 翔平',
-            team: '北海道日本ハムファイターズ',
-            age: 21,
-            number: 11,
-            position: '投手',
-            career: '花巻東ー日本ハム',
-            title: '最優秀防御率、最多勝、最高勝率'
-        });
-    }
+    localStorage: new LocalStorage('backbone_sample')
 });
 
 },{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":10}],2:[function(require,module,exports){
@@ -60,13 +49,7 @@ module.exports = Backbone.Model.extend({
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
-    template: '#detail_view',
-    modelEvents: {
-        'remove': 'removed'
-    },
-    removed: function() {
-        this.triggerMethod('refresh:detail');
-    }
+    template: '#detail_view'
 });
 
 },{"backbone.marionette":12}],5:[function(require,module,exports){
@@ -118,7 +101,6 @@ module.exports = Marionette.ItemView.extend({
 });
 
 },{"backbone.marionette":12}],7:[function(require,module,exports){
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UsersView = require('./UsersView');
 var DetailView = require('./DetailView');
@@ -132,30 +114,24 @@ module.exports = Marionette.LayoutView.extend({
         newUser: '#new_user'
     },
     childEvents: {
-        'show:detail': 'showDetail',
-        'refresh:detail': 'refreshDetail'
+        'show:detail': 'changeDetail'
     },
     onRender: function() {
-        var users = this.collection;
-        if(_(users.models).isEmpty()) users.addDefaultUser();
-        this.users.show(new UsersView({collection: users}));
-        this.userDetail.show(new DetailView({model: _(users.models).first()}));
-        this.newUser.show(new FormView({collection: users}));
+        this.users.show(new UsersView({collection: this.collection}));
+        this.userDetail.show(new DetailView({model: this.collection.models[0]}));
+        this.newUser.show(new FormView({collection: this.collection}));
     },
-    showDetail: function(childView) {
+    changeDetail: function(childView) {
         this.userDetail.show(new DetailView({model: childView.model}));
-    },
-    refreshDetail: function() {
-        this.userDetail.show(new DetailView({model: _(this.collection.models).first()}));
     }
 });
 
-},{"./DetailView":4,"./FormView":5,"./UsersView":9,"backbone.marionette":12,"underscore":"underscore"}],8:[function(require,module,exports){
+},{"./DetailView":4,"./FormView":5,"./UsersView":9,"backbone.marionette":12}],8:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
     tagName: 'a',
-    className: 'user-name list-group-item',
+    className: 'list-group-item',
     attributes: {
         href: '#'
     },
@@ -168,7 +144,8 @@ module.exports = Marionette.ItemView.extend({
         e.preventDefault();
         this.model.destroy();
     },
-    showDetail: function() {
+    showDetail: function(e) {
+        e.preventDefault();
         this.triggerMethod('show:detail');
     }
 });

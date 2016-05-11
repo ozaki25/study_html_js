@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UsersView = require('./UsersView');
 var DetailView = require('./DetailView');
@@ -12,20 +11,14 @@ module.exports = Marionette.LayoutView.extend({
         newUser: '#new_user'
     },
     childEvents: {
-        'show:detail': 'showDetail',
-        'refresh:detail': 'refreshDetail'
+        'show:detail': 'changeDetail'
     },
     onRender: function() {
-        var users = this.collection;
-        if(_(users.models).isEmpty()) users.addDefaultUser();
-        this.users.show(new UsersView({collection: users}));
-        this.userDetail.show(new DetailView({model: _(users.models).first()}));
-        this.newUser.show(new FormView({collection: users}));
+        this.users.show(new UsersView({collection: this.collection}));
+        this.userDetail.show(new DetailView({model: this.collection.models[0]}));
+        this.newUser.show(new FormView({collection: this.collection}));
     },
-    showDetail: function(childView) {
+    changeDetail: function(childView) {
         this.userDetail.show(new DetailView({model: childView.model}));
-    },
-    refreshDetail: function() {
-        this.userDetail.show(new DetailView({model: _(this.collection.models).first()}));
     }
 });

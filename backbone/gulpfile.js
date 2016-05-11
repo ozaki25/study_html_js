@@ -24,7 +24,7 @@ gulp.task('work', () => {
     .pipe(gulp.dest('./work/scripts/'));
 });
 
-var range = [1,2,3,4,5,6,7,8];
+var range = [1,2,3,4,5,6,7,8,9];
 
 range.forEach(function(i) {
     var task = 'kadai' + i;
