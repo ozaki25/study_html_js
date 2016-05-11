@@ -8,9 +8,10 @@ module.exports = Backbone.Collection.extend({
     localStorage: new LocalStorage('backbone_sample')
 });
 
-},{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":7}],2:[function(require,module,exports){
+},{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":8}],2:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 var Users = require('./collections/Users.js');
+var HeaderView = require('./views/HeaderView');
 var UsersView = require('./views/UsersView');
 var FormView = require('./views/FormView');
 
@@ -18,11 +19,13 @@ var users = new Users();
 
 var app = new Marionette.Application({
     regions: {
+        header: '#header',
         users: '#users',
         newUser: '#new_user'
     },
     onStart: function() {
         users.fetch().done(function() {
+            this.header.show(new HeaderView());
             this.users.show(new UsersView({collection: users}));
             this.newUser.show(new FormView({collection: users}));
         }.bind(this));
@@ -31,7 +34,7 @@ var app = new Marionette.Application({
 
 app.start();
 
-},{"./collections/Users.js":1,"./views/FormView":4,"./views/UsersView":6,"backbone.marionette":9}],3:[function(require,module,exports){
+},{"./collections/Users.js":1,"./views/FormView":4,"./views/HeaderView":5,"./views/UsersView":7,"backbone.marionette":10}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -71,7 +74,14 @@ module.exports = Marionette.ItemView.extend({
 });
 
 
-},{"../models/User":3,"backbone.marionette":9}],5:[function(require,module,exports){
+},{"../models/User":3,"backbone.marionette":10}],5:[function(require,module,exports){
+var Marionette = require('backbone.marionette');
+
+module.exports = Marionette.ItemView.extend({
+    template: '#header_view'
+});
+
+},{"backbone.marionette":10}],6:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -87,7 +97,7 @@ module.exports = Marionette.ItemView.extend({
     }
 });
 
-},{"backbone.marionette":9}],6:[function(require,module,exports){
+},{"backbone.marionette":10}],7:[function(require,module,exports){
 var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
@@ -98,7 +108,7 @@ module.exports = Marionette.CompositeView.extend({
     template: '#users_view'
 });
 
-},{"./UserView":5,"backbone.marionette":9,"underscore":"underscore"}],7:[function(require,module,exports){
+},{"./UserView":6,"backbone.marionette":10,"underscore":"underscore"}],8:[function(require,module,exports){
 /**
  * Backbone localStorage Adapter
  * Version 1.1.16
@@ -358,7 +368,7 @@ Backbone.sync = function(method, model, options) {
 return Backbone.LocalStorage;
 }));
 
-},{"backbone":"backbone"}],8:[function(require,module,exports){
+},{"backbone":"backbone"}],9:[function(require,module,exports){
 // Backbone.BabySitter
 // -------------------
 // v0.1.11
@@ -550,7 +560,7 @@ return Backbone.LocalStorage;
 
 }));
 
-},{"backbone":"backbone","underscore":"underscore"}],9:[function(require,module,exports){
+},{"backbone":"backbone","underscore":"underscore"}],10:[function(require,module,exports){
 // MarionetteJS (Backbone.Marionette)
 // ----------------------------------
 // v2.4.5
@@ -4061,7 +4071,7 @@ return Backbone.LocalStorage;
   return Marionette;
 }));
 
-},{"backbone":"backbone","backbone.babysitter":8,"backbone.wreqr":10,"underscore":"underscore"}],10:[function(require,module,exports){
+},{"backbone":"backbone","backbone.babysitter":9,"backbone.wreqr":11,"underscore":"underscore"}],11:[function(require,module,exports){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v1.3.6
@@ -4498,7 +4508,7 @@ return Backbone.LocalStorage;
 
 }));
 
-},{"backbone":"backbone","underscore":"underscore"}],11:[function(require,module,exports){
+},{"backbone":"backbone","underscore":"underscore"}],12:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: affix.js v3.3.6
  * http://getbootstrap.com/javascript/#affix
@@ -4662,7 +4672,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: alert.js v3.3.6
  * http://getbootstrap.com/javascript/#alerts
@@ -4758,7 +4768,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: button.js v3.3.6
  * http://getbootstrap.com/javascript/#buttons
@@ -4880,7 +4890,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: carousel.js v3.3.6
  * http://getbootstrap.com/javascript/#carousel
@@ -5119,7 +5129,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: collapse.js v3.3.6
  * http://getbootstrap.com/javascript/#collapse
@@ -5332,7 +5342,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: dropdown.js v3.3.6
  * http://getbootstrap.com/javascript/#dropdowns
@@ -5499,7 +5509,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: modal.js v3.3.6
  * http://getbootstrap.com/javascript/#modals
@@ -5838,7 +5848,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: popover.js v3.3.6
  * http://getbootstrap.com/javascript/#popovers
@@ -5948,7 +5958,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: scrollspy.js v3.3.6
  * http://getbootstrap.com/javascript/#scrollspy
@@ -6122,7 +6132,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tab.js v3.3.6
  * http://getbootstrap.com/javascript/#tabs
@@ -6279,7 +6289,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tooltip.js v3.3.6
  * http://getbootstrap.com/javascript/#tooltip
@@ -6795,7 +6805,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: transition.js v3.3.6
  * http://getbootstrap.com/javascript/#transitions
@@ -8794,7 +8804,7 @@ require('../../js/popover.js')
 require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
-},{"../../js/affix.js":11,"../../js/alert.js":12,"../../js/button.js":13,"../../js/carousel.js":14,"../../js/collapse.js":15,"../../js/dropdown.js":16,"../../js/modal.js":17,"../../js/popover.js":18,"../../js/scrollspy.js":19,"../../js/tab.js":20,"../../js/tooltip.js":21,"../../js/transition.js":22}],"jquery":[function(require,module,exports){
+},{"../../js/affix.js":12,"../../js/alert.js":13,"../../js/button.js":14,"../../js/carousel.js":15,"../../js/collapse.js":16,"../../js/dropdown.js":17,"../../js/modal.js":18,"../../js/popover.js":19,"../../js/scrollspy.js":20,"../../js/tab.js":21,"../../js/tooltip.js":22,"../../js/transition.js":23}],"jquery":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
