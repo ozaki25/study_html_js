@@ -44,7 +44,7 @@
 
 ##### HeaderView.jsを作る
 * viewsディレクトリにHeaderView.jsを作って下さい
-* 内容は以下の通りです(marionetteを使う新しviewもこれしか書かなくてすむ！)
+* 内容は以下の通りです(marionetteを使うと新しいviewもこれしか書かなくてすむ！)
 <pre>
   var Marionette = require('backbone.marionette');
 
