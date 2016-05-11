@@ -2,7 +2,7 @@ var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
     tagName: 'a',
-    className: 'user-name list-group-item',
+    className: 'list-group-item',
     attributes: {
         href: '#'
     },
