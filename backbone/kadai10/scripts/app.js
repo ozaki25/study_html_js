@@ -1,14 +1,35 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var _ = require('underscore');
+var Backbone = require('backbone');
+var LocalStorage = require('backbone.LocalStorage');
+var Team = require('../models/Team');
+
+module.exports = Backbone.Collection.extend({
+    mdoel: Team
+});
+
+},{"../models/Team":4,"backbone":"backbone","backbone.LocalStorage":14,"underscore":"underscore"}],2:[function(require,module,exports){
+var _ = require('underscore');
 var Backbone = require('backbone');
 var LocalStorage = require('backbone.LocalStorage');
 var User = require('../models/User');
+var Teams = require('../collections/Teams');
 
 module.exports = Backbone.Collection.extend({
     mdoel: User,
-    localStorage: new LocalStorage('backbone_sample')
+    localStorage: new LocalStorage('backbone_sample'),
+    getTeams: function() {
+        var teamList = _(this.pluck('team')).chain().uniq().compact().value();
+        var teams = new Teams(
+            _(teamList).map(function(team){
+                return {team: team}
+            })
+        );
+        return teams;
+    }
 });
 
-},{"../models/User":3,"backbone":"backbone","backbone.LocalStorage":10}],2:[function(require,module,exports){
+},{"../collections/Teams":1,"../models/User":5,"backbone":"backbone","backbone.LocalStorage":14,"underscore":"underscore"}],3:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 var Users = require('./collections/Users');
 var HeaderView = require('./views/HeaderView');
@@ -30,7 +51,13 @@ var app = new Marionette.Application({
 
 app.start();
 
-},{"./collections/Users":1,"./views/HeaderView":6,"./views/MainView":7,"backbone.marionette":12}],3:[function(require,module,exports){
+},{"./collections/Users":2,"./views/HeaderView":8,"./views/MainView":9,"backbone.marionette":16}],4:[function(require,module,exports){
+var Backbone = require('backbone');
+
+module.exports = Backbone.Model.extend({
+});
+
+},{"backbone":"backbone"}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -45,14 +72,14 @@ module.exports = Backbone.Model.extend({
     }
 });
 
-},{"backbone":"backbone"}],4:[function(require,module,exports){
+},{"backbone":"backbone"}],6:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
     template: '#detail_view'
 });
 
-},{"backbone.marionette":12}],5:[function(require,module,exports){
+},{"backbone.marionette":16}],7:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
@@ -93,25 +120,27 @@ module.exports = Marionette.ItemView.extend({
 });
 
 
-},{"../models/User":3,"backbone.marionette":12}],6:[function(require,module,exports){
+},{"../models/User":5,"backbone.marionette":16}],8:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
     template: '#header_view'
 });
 
-},{"backbone.marionette":12}],7:[function(require,module,exports){
+},{"backbone.marionette":16}],9:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 var UsersView = require('./UsersView');
 var DetailView = require('./DetailView');
 var FormView = require('./FormView');
+var TeamsView = require('./TeamsView');
 
 module.exports = Marionette.LayoutView.extend({
     template: '#main_view',
     regions: {
         users: '#users',
         userDetail: '#user_detail',
-        newUser: '#new_user'
+        newUser: '#new_user',
+        teams: '#teams'
     },
     childEvents: {
         'show:detail': 'changeDetail'
@@ -120,13 +149,43 @@ module.exports = Marionette.LayoutView.extend({
         this.users.show(new UsersView({collection: this.collection}));
         this.userDetail.show(new DetailView({model: this.collection.models[0]}));
         this.newUser.show(new FormView({collection: this.collection}));
+        this.teams.show(new TeamsView({collection: this.collection.getTeams()}));
     },
     changeDetail: function(childView) {
         this.userDetail.show(new DetailView({model: childView.model}));
     }
 });
 
-},{"./DetailView":4,"./FormView":5,"./UsersView":9,"backbone.marionette":12}],8:[function(require,module,exports){
+},{"./DetailView":6,"./FormView":7,"./TeamsView":11,"./UsersView":13,"backbone.marionette":16}],10:[function(require,module,exports){
+var Marionette = require('backbone.marionette');
+
+module.exports = Marionette.ItemView.extend({
+    tagName: 'a',
+    className: 'list-group-item',
+    attributes: {
+        href: '#'
+    },
+    template: '#team_view',
+    events: {
+        'click': 'showDetail'
+    },
+    showDetail: function(e) {
+        e.preventDefault();
+        this.triggerMethod('show:detail');
+    }
+});
+
+},{"backbone.marionette":16}],11:[function(require,module,exports){
+var Marionette = require('backbone.marionette');
+var TeamView = require('./TeamView');
+
+module.exports = Marionette.CompositeView.extend({
+    childView: TeamView,
+    childViewContainer: '#team_list',
+    template: '#teams_view'
+});
+
+},{"./TeamView":10,"backbone.marionette":16}],12:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -150,7 +209,7 @@ module.exports = Marionette.ItemView.extend({
     }
 });
 
-},{"backbone.marionette":12}],9:[function(require,module,exports){
+},{"backbone.marionette":16}],13:[function(require,module,exports){
 var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
@@ -161,7 +220,7 @@ module.exports = Marionette.CompositeView.extend({
     template: '#users_view'
 });
 
-},{"./UserView":8,"backbone.marionette":12,"underscore":"underscore"}],10:[function(require,module,exports){
+},{"./UserView":12,"backbone.marionette":16,"underscore":"underscore"}],14:[function(require,module,exports){
 /**
  * Backbone localStorage Adapter
  * Version 1.1.16
@@ -421,7 +480,7 @@ Backbone.sync = function(method, model, options) {
 return Backbone.LocalStorage;
 }));
 
-},{"backbone":"backbone"}],11:[function(require,module,exports){
+},{"backbone":"backbone"}],15:[function(require,module,exports){
 // Backbone.BabySitter
 // -------------------
 // v0.1.11
@@ -613,7 +672,7 @@ return Backbone.LocalStorage;
 
 }));
 
-},{"backbone":"backbone","underscore":"underscore"}],12:[function(require,module,exports){
+},{"backbone":"backbone","underscore":"underscore"}],16:[function(require,module,exports){
 // MarionetteJS (Backbone.Marionette)
 // ----------------------------------
 // v2.4.5
@@ -4124,7 +4183,7 @@ return Backbone.LocalStorage;
   return Marionette;
 }));
 
-},{"backbone":"backbone","backbone.babysitter":11,"backbone.wreqr":13,"underscore":"underscore"}],13:[function(require,module,exports){
+},{"backbone":"backbone","backbone.babysitter":15,"backbone.wreqr":17,"underscore":"underscore"}],17:[function(require,module,exports){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v1.3.6
@@ -4561,7 +4620,7 @@ return Backbone.LocalStorage;
 
 }));
 
-},{"backbone":"backbone","underscore":"underscore"}],14:[function(require,module,exports){
+},{"backbone":"backbone","underscore":"underscore"}],18:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: affix.js v3.3.6
  * http://getbootstrap.com/javascript/#affix
@@ -4725,7 +4784,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],15:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: alert.js v3.3.6
  * http://getbootstrap.com/javascript/#alerts
@@ -4821,7 +4880,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],16:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: button.js v3.3.6
  * http://getbootstrap.com/javascript/#buttons
@@ -4943,7 +5002,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],17:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: carousel.js v3.3.6
  * http://getbootstrap.com/javascript/#carousel
@@ -5182,7 +5241,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],18:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: collapse.js v3.3.6
  * http://getbootstrap.com/javascript/#collapse
@@ -5395,7 +5454,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],19:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: dropdown.js v3.3.6
  * http://getbootstrap.com/javascript/#dropdowns
@@ -5562,7 +5621,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],20:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: modal.js v3.3.6
  * http://getbootstrap.com/javascript/#modals
@@ -5901,7 +5960,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],21:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: popover.js v3.3.6
  * http://getbootstrap.com/javascript/#popovers
@@ -6011,7 +6070,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],22:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: scrollspy.js v3.3.6
  * http://getbootstrap.com/javascript/#scrollspy
@@ -6185,7 +6244,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],23:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tab.js v3.3.6
  * http://getbootstrap.com/javascript/#tabs
@@ -6342,7 +6401,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],24:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tooltip.js v3.3.6
  * http://getbootstrap.com/javascript/#tooltip
@@ -6858,7 +6917,7 @@ return Backbone.LocalStorage;
 
 }(jQuery);
 
-},{}],25:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: transition.js v3.3.6
  * http://getbootstrap.com/javascript/#transitions
@@ -8857,7 +8916,7 @@ require('../../js/popover.js')
 require('../../js/scrollspy.js')
 require('../../js/tab.js')
 require('../../js/affix.js')
-},{"../../js/affix.js":14,"../../js/alert.js":15,"../../js/button.js":16,"../../js/carousel.js":17,"../../js/collapse.js":18,"../../js/dropdown.js":19,"../../js/modal.js":20,"../../js/popover.js":21,"../../js/scrollspy.js":22,"../../js/tab.js":23,"../../js/tooltip.js":24,"../../js/transition.js":25}],"jquery":[function(require,module,exports){
+},{"../../js/affix.js":18,"../../js/alert.js":19,"../../js/button.js":20,"../../js/carousel.js":21,"../../js/collapse.js":22,"../../js/dropdown.js":23,"../../js/modal.js":24,"../../js/popover.js":25,"../../js/scrollspy.js":26,"../../js/tab.js":27,"../../js/tooltip.js":28,"../../js/transition.js":29}],"jquery":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
@@ -20251,4 +20310,4 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[2]);
+},{}]},{},[3]);

@@ -23,10 +23,22 @@
 
     <script id="main_view" type="text/template">
       <div class="row">
+        <div id="teams" class="col-md-12"></div>
         <div id="users" class="col-md-3"></div>
         <div id="user_detail" class="col-md-6"></div>
         <div id="new_user" class="col-md-3"></div>
       </div>
+    </script>
+
+    <script id="teams_view" type="text/template">
+      <div class="panel panel-info">
+        <div class="panel-heading">チーム一覧</div>
+        <ul id="team_list" class="list-group"></ul>
+      </div>
+    </script>
+
+    <script id="team_view" type="text/template">
+      <%- team %>
     </script>
 
     <script id="users_view" type="text/template">
