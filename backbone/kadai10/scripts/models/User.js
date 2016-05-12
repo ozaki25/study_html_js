@@ -9,5 +9,10 @@ module.exports = Backbone.Model.extend({
         position: '全部',
         career: 'なし',
         title: 'なし'
+    },
+    validation: {
+        name: {
+            required: true
+        },
     }
 });
