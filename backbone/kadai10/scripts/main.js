@@ -1,18 +1,19 @@
 var Marionette = require('backbone.marionette');
-var Users = require('./collections/Users');
+var Teams = require('./collections/Teams');
 var HeaderView = require('./views/HeaderView');
 var MainView = require('./views/MainView');
 
-var users = new Users();
+var teams = new Teams();
 var app = new Marionette.Application({
     regions: {
         header: '#header',
         main: '#main'
     },
     onStart: function() {
-        users.fetch().done(function() {
+        teams.fetch().done(function() {
+            if(!teams.models.length) teams.addDefaultTeams();
             this.header.show(new HeaderView());
-            this.main.show(new MainView({collection: users}));
+            this.main.show(new MainView({collection: teams}));
         }.bind(this));
     }
 });

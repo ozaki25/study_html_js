@@ -5,53 +5,64 @@ var LocalStorage = require('backbone.LocalStorage');
 var Team = require('../models/Team');
 
 module.exports = Backbone.Collection.extend({
-    mdoel: Team
-});
-
-},{"../models/Team":4,"backbone":"backbone","backbone.LocalStorage":14,"underscore":"underscore"}],2:[function(require,module,exports){
-var _ = require('underscore');
-var Backbone = require('backbone');
-var LocalStorage = require('backbone.LocalStorage');
-var User = require('../models/User');
-var Teams = require('../collections/Teams');
-
-module.exports = Backbone.Collection.extend({
-    mdoel: User,
-    localStorage: new LocalStorage('backbone_sample'),
-    getTeams: function() {
-        var teamList = _(this.pluck('team')).chain().uniq().compact().value();
-        var teams = new Teams(
-            _(teamList).map(function(team){
-                return {team: team}
-            })
-        );
-        return teams;
+    mdoel: Team,
+    localStorage: new LocalStorage('backbone_sample.teams'),
+    addDefaultTeams: function() {
+        var teamList = ['日本ハム',
+                        'ソフトバンク',
+                        'ロッテ',
+                        '西武',
+                        'オリックス',
+                        '楽天',
+                        '横浜DeNA',
+                        '阪神',
+                        '巨人',
+                        '広島',
+                        'ヤクルト',
+                        '中日'];
+        _(teamList).each(function(team) {
+            this.create({team: team, users: []});
+        }.bind(this));
     }
 });
 
-},{"../collections/Teams":1,"../models/User":5,"backbone":"backbone","backbone.LocalStorage":14,"underscore":"underscore"}],3:[function(require,module,exports){
+},{"../models/Team":4,"backbone":"backbone","backbone.LocalStorage":14,"underscore":"underscore"}],2:[function(require,module,exports){
+var Backbone = require('backbone');
+var LocalStorage = require('backbone.LocalStorage');
+var User = require('../models/User');
+
+module.exports = Backbone.Collection.extend({
+    mdoel: User,
+    localStorage: new LocalStorage('backbone_sample.users'),
+    withTeam: function(team) {
+        return this.where({team: team});
+    }
+});
+
+},{"../models/User":5,"backbone":"backbone","backbone.LocalStorage":14}],3:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
-var Users = require('./collections/Users');
+var Teams = require('./collections/Teams');
 var HeaderView = require('./views/HeaderView');
 var MainView = require('./views/MainView');
 
-var users = new Users();
+var teams = new Teams();
 var app = new Marionette.Application({
     regions: {
         header: '#header',
         main: '#main'
     },
     onStart: function() {
-        users.fetch().done(function() {
+        teams.fetch().done(function() {
+            if(!teams.models.length) teams.addDefaultTeams();
             this.header.show(new HeaderView());
-            this.main.show(new MainView({collection: users}));
+            this.main.show(new MainView({collection: teams}));
         }.bind(this));
     }
 });
 
 app.start();
 
-},{"./collections/Users":2,"./views/HeaderView":8,"./views/MainView":9,"backbone.marionette":16}],4:[function(require,module,exports){
+},{"./collections/Teams":1,"./views/HeaderView":8,"./views/MainView":9,"backbone.marionette":16}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -114,7 +125,11 @@ module.exports = Marionette.ItemView.extend({
         if(position) user.set('position', position);
         if(career) user.set('career', career);
         if(title) user.set('title', title);
-        this.collection.create(user);
+
+        var model = this.collection.findWhere({team: team});
+        model.get('users').push(user)
+        model.save();
+
         this.ui.inputs.val('');
     }
 });
@@ -129,6 +144,7 @@ module.exports = Marionette.ItemView.extend({
 
 },{"backbone.marionette":16}],9:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
+var Users = require('../collections/Users');
 var UsersView = require('./UsersView');
 var DetailView = require('./DetailView');
 var FormView = require('./FormView');
@@ -137,26 +153,32 @@ var TeamsView = require('./TeamsView');
 module.exports = Marionette.LayoutView.extend({
     template: '#main_view',
     regions: {
-        users: '#users',
-        userDetail: '#user_detail',
-        newUser: '#new_user',
-        teams: '#teams'
+        teams: '#teams',
+        mainContent: '#main_content',
+        newUser: '#new_user'
     },
     childEvents: {
-        'show:detail': 'changeDetail'
+        'show:detail': 'showUserDetail',
+        'show:users': 'showUsers'
     },
     onRender: function() {
-        this.users.show(new UsersView({collection: this.collection}));
-        this.userDetail.show(new DetailView({model: this.collection.models[0]}));
+        var team = this.collection.models[0];
+        var users = new Users(team.get('users'));
+        this.teams.show(new TeamsView({collection: this.collection}));
+        this.mainContent.show(new UsersView({collection: users, model: team}));
         this.newUser.show(new FormView({collection: this.collection}));
-        this.teams.show(new TeamsView({collection: this.collection.getTeams()}));
     },
-    changeDetail: function(childView) {
-        this.userDetail.show(new DetailView({model: childView.model}));
+    showUsers: function(childView) {
+        var team = childView.model;
+        var users = new Users(team.get('users'));
+        this.mainContent.show(new UsersView({collection: users, model: team}));
+    },
+    showUserDetail: function(childView) {
+        this.mainContent.show(new DetailView({model: childView.model}));
     }
 });
 
-},{"./DetailView":6,"./FormView":7,"./TeamsView":11,"./UsersView":13,"backbone.marionette":16}],10:[function(require,module,exports){
+},{"../collections/Users":2,"./DetailView":6,"./FormView":7,"./TeamsView":11,"./UsersView":13,"backbone.marionette":16}],10:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -167,11 +189,11 @@ module.exports = Marionette.ItemView.extend({
     },
     template: '#team_view',
     events: {
-        'click': 'showDetail'
+        'click': 'showUsers'
     },
-    showDetail: function(e) {
+    showUsers: function(e) {
         e.preventDefault();
-        this.triggerMethod('show:detail');
+        this.triggerMethod('show:users');
     }
 });
 
@@ -210,7 +232,6 @@ module.exports = Marionette.ItemView.extend({
 });
 
 },{"backbone.marionette":16}],13:[function(require,module,exports){
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
 
@@ -220,7 +241,7 @@ module.exports = Marionette.CompositeView.extend({
     template: '#users_view'
 });
 
-},{"./UserView":12,"backbone.marionette":16,"underscore":"underscore"}],14:[function(require,module,exports){
+},{"./UserView":12,"backbone.marionette":16}],14:[function(require,module,exports){
 /**
  * Backbone localStorage Adapter
  * Version 1.1.16

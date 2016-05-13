@@ -8,10 +8,10 @@ module.exports = Marionette.ItemView.extend({
     },
     template: '#team_view',
     events: {
-        'click': 'showDetail'
+        'click': 'showUsers'
     },
-    showDetail: function(e) {
+    showUsers: function(e) {
         e.preventDefault();
-        this.triggerMethod('show:detail');
+        this.triggerMethod('show:users');
     }
 });

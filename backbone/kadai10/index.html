@@ -23,9 +23,8 @@
 
     <script id="main_view" type="text/template">
       <div class="row">
-        <div id="teams" class="col-md-12"></div>
-        <div id="users" class="col-md-3"></div>
-        <div id="user_detail" class="col-md-6"></div>
+        <div id="teams" class="col-md-3"></div>
+        <div id="main_content" class="col-md-6"></div>
         <div id="new_user" class="col-md-3"></div>
       </div>
     </script>
@@ -42,8 +41,10 @@
     </script>
 
     <script id="users_view" type="text/template">
-      <div class="panel panel-info">
-        <div class="panel-heading">ユーザ一覧</div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%- team %>の選手一覧
+        </div>
         <ul id="user_list" class="list-group"></ul>
       </div>
     </script>

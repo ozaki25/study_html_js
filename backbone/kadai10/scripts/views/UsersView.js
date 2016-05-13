@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var UserView = require('./UserView');
 

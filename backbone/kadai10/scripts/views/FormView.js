@@ -32,7 +32,11 @@ module.exports = Marionette.ItemView.extend({
         if(position) user.set('position', position);
         if(career) user.set('career', career);
         if(title) user.set('title', title);
-        this.collection.create(user);
+
+        var model = this.collection.findWhere({team: team});
+        model.get('users').push(user)
+        model.save();
+
         this.ui.inputs.val('');
     }
 });
