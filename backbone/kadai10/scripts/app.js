@@ -21,7 +21,7 @@ module.exports = Backbone.Collection.extend({
                         'ヤクルト',
                         '中日'];
         _(teamList).each(function(team) {
-            this.create({team: team, users: []});
+            this.create({name: team, users: []});
         }.bind(this));
     }
 });
@@ -91,6 +91,7 @@ module.exports = Marionette.ItemView.extend({
 });
 
 },{"backbone.marionette":16}],7:[function(require,module,exports){
+var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var User = require('../models/User');
 
@@ -98,7 +99,7 @@ module.exports = Marionette.ItemView.extend({
     template: '#form_view',
     ui: {
         inputName: 'input#name',
-        inputTeam: 'input#team',
+        selectTeam: 'select#team',
         inputAge: 'input#age',
         inputNumber: 'input#number',
         inputPosition: 'input#position',
@@ -109,9 +110,19 @@ module.exports = Marionette.ItemView.extend({
     events: {
         'click #add_user': 'addUser'
     },
+    templateHelpers: function () {
+        return {
+            selectTeam: function() {
+                var teamList =  _(this.collection.models).map(function(team) {
+                    return '<option value="' + team.get('name') + '">' + team.get('name') + '</option>';
+                });
+                return teamList.join('');
+            }.bind(this)
+        }
+    },
     addUser: function() {
         var name = this.ui.inputName.val().trim();
-        var team = this.ui.inputTeam.val().trim();
+        var team = this.ui.selectTeam.children(':selected').val();
         var age = this.ui.inputAge.val().trim();
         var number = this.ui.inputNumber.val().trim();
         var position = this.ui.inputPosition.val().trim();
@@ -126,7 +137,7 @@ module.exports = Marionette.ItemView.extend({
         if(career) user.set('career', career);
         if(title) user.set('title', title);
 
-        var model = this.collection.findWhere({team: team});
+        var model = this.collection.findWhere({name: team});
         model.get('users').push(user)
         model.save();
 
@@ -135,7 +146,7 @@ module.exports = Marionette.ItemView.extend({
 });
 
 
-},{"../models/User":5,"backbone.marionette":16}],8:[function(require,module,exports){
+},{"../models/User":5,"backbone.marionette":16,"underscore":"underscore"}],8:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({

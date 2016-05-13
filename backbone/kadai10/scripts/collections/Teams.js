@@ -20,7 +20,7 @@ module.exports = Backbone.Collection.extend({
                         'ヤクルト',
                         '中日'];
         _(teamList).each(function(team) {
-            this.create({team: team, users: []});
+            this.create({name: team, users: []});
         }.bind(this));
     }
 });
